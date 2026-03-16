@@ -113,3 +113,25 @@ document.addEventListener('DOMContentLoaded', () => {
         renderer.setSize(container.offsetWidth, container.offsetHeight);
     });
 });
+
+const openLogin = document.getElementById("openLogin");
+const closeLogin = document.getElementById("closeLogin");
+const loginOverlay = document.getElementById("loginOverlay");
+
+openLogin.addEventListener("click", () => {
+
+    loginOverlay.classList.add("active");
+
+    gsap.from(".login-box",{
+        y:-50,
+        opacity:0,
+        duration:0.6
+    });
+
+});
+
+closeLogin.addEventListener("click", () => {
+
+    loginOverlay.classList.remove("active");
+
+});
