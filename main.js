@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         model.rotation.x = 5;
 
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 3 / maxDim;
+        const scale = 3.1 / maxDim;
         model.scale.setScalar(scale);
 
         scene.add(model);
