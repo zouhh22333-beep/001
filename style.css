@@ -33,7 +33,7 @@ h3 { font-size: clamp(1.25rem, 1.75vw, 2.5rem); }
 a {
     text-decoration: none;
     color: #fff;
-    font-size: clamp(2.25rem, 1.75vw, 2.25rem);
+    font-size: clamp(1.25rem, 1.75vw, 1.25rem);
     font-weight: lighter;
     line-height: 1.25;
 }
