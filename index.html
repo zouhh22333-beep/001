@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Ubuntu">
-    <link rel="icon" href="favicon.ico">
   <script type="importmap">
   {
     "imports": {
@@ -16,7 +15,7 @@
       "lenis": "https://unpkg.com/lenis@1.1.5/dist/lenis.mjs",
       "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
     }
-    }
+  }
 </script>
   <style>
     body{
@@ -25,42 +24,25 @@
   </style>
 </head>
  <body>
-    <div class="nav">
-        <div class="logo"><img src="" alt=""></div>
-        <div class="about">
-            <ul>
-                <li><a href="#">about us</a></li>
-                <li><a href="#">help</a></li>
-                <li><a href="#">hh</a></li>
-                <li><a href="#">cel</a></li>
-            </ul>
+    <div class="header">
+        <div class="wrapper">
+            <!-- 导航栏 -->
+            <div class="nav">kkk</div>
+            <div class="nav"><a href="#section1">project</a></div>
+            <div class="nav"><a href="#section2">skills</a></div>
+            <div class="nav"><a href="#section3">about</a></div>
+            <div class="hover-bg"></div>
         </div>
     </div>
-    <div class="login-btn" id="openLogin">Login</div>
-    <section class="one">
+    <section class="one" id="section1">
         <h1>Section 1</h1>
     </section>
-    <section class="two">
+    <section class="two" id="section2">
         <h1>Section 2</h1>
     </section>
-    <section class="three">
+    <section class="three" id="section3">
         <h1>Section 3</h1>
     </section>
-
-    <div class="login-overlay" id="loginOverlay">
-
-    <div class="login-box">
-        <h2>Login</h2>
-
-        <input type="text" placeholder="Username" id="username">
-        <input type="password" placeholder="Password" id="password">
-
-        <button id="loginBtn">Enter</button>
-
-        <span class="close-login" id="closeLogin">✕</span>
-    </div>
-
-    </div>
 
     <footer>
         <div class="footer-container">
@@ -85,12 +67,11 @@
                     </div>
                 </div>
                 <div class="footer-row">       
-                    <p>hi</p>
-                    <p>Built by kkk</p>
+                    <p>Built by ©等雨初凉</p>
                 </div>
             </div>
         </div>
     </footer>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="/main.js"></script>
  </body>
 </html>

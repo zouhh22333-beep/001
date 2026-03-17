@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { GLTFLoader } from "https://unpkg.com/three@0.128.0/examples/jsm/loaders/GLTFLoader.js";
 
+let lenis;
 console.log("Lenis 导入结果:", Lenis);
 console.log("gsap:", gsap);
 console.log("ScrollTrigger:", ScrollTrigger);
@@ -13,7 +14,13 @@ gsap.registerPlugin(ScrollTrigger);
 console.log("注册后 ScrollTrigger:", ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const lenis = new Lenis();
+    lenis = new Lenis({
+    duration: 1.2, // 滚动时间（越大越丝滑）
+    easing: (t) => 1 - Math.pow(1 - t, 4), // ⭐关键：缓动曲线
+    smooth: true,
+    smoothTouch: false
+    });
+
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
@@ -69,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         model.rotation.x = 5;
 
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 3.1 / maxDim;
+        const scale = 3 / maxDim;
         model.scale.setScalar(scale);
 
         scene.add(model);
@@ -112,26 +119,36 @@ document.addEventListener('DOMContentLoaded', () => {
         camera.updateProjectionMatrix();
         renderer.setSize(container.offsetWidth, container.offsetHeight);
     });
-});
 
-const openLogin = document.getElementById("openLogin");
-const closeLogin = document.getElementById("closeLogin");
-const loginOverlay = document.getElementById("loginOverlay");
+    //  hover 滑动效果
+    //  点击平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+        e.preventDefault();
 
-openLogin.addEventListener("click", () => {
+        const target = document.querySelector(this.getAttribute("href"));
 
-    loginOverlay.classList.add("active");
-
-    gsap.from(".login-box",{
-        y:-50,
-        opacity:0,
-        duration:0.6
+        lenis.scrollTo(target, {
+            duration: 1.5,
+            easing: (t) => 1 - Math.pow(1 - t, 4)
+        });
     });
 
-});
+    });
+    const navItems = document.querySelectorAll(".nav");
+    const hoverBg = document.querySelector(".hover-bg");
 
-closeLogin.addEventListener("click", () => {
+    navItems.forEach(item => {
+        item.addEventListener("mouseenter", () => {
+            const rect = item.getBoundingClientRect();
+            const parentRect = item.parentElement.getBoundingClientRect();
 
-    loginOverlay.classList.remove("active");
+            const left = rect.left - parentRect.left;
+            const width = rect.width;
+
+            hoverBg.style.left = left + "px";
+            hoverBg.style.width = width + "px";
+        });
+    });
 
 });
