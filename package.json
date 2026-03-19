@@ -9,7 +9,6 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
@@ -29,5 +28,3 @@
   },
   "homepage": "https://github.com/zouhh22333-beep/001#readme"
 }
-  
-
