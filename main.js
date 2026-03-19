@@ -151,4 +151,86 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const input = document.getElementById("chat-input");
+const button = document.getElementById("send-btn");
+const chatBox = document.getElementById("chat-box");
+
+// 点击发送
+button.addEventListener("click", sendMessage);
+
+// 回车发送
+input.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    sendMessage();
+  }
+});
+
+async function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+
+  addMessage(text, "user");
+  input.value = "";
+
+  // AI占位
+  const aiMsg = document.createElement("div");
+  aiMsg.classList.add("message", "ai");
+  aiMsg.innerText = "Thinking...";
+  chatBox.appendChild(aiMsg);
+
+  scrollToBottom();
+
+  try {
+    const res = await fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: text }),
+    });
+
+    const data = await res.json();
+
+    aiMsg.innerText = "";
+    typeText(aiMsg, data.reply);
+
+  } catch (err) {
+    aiMsg.innerText = "❌ Error";
+    console.error(err);
+  }
+
+  scrollToBottom();
+}
+
+// 添加消息
+function addMessage(text, type) {
+  const msg = document.createElement("div");
+  msg.classList.add("message", type);
+  msg.innerText = text;
+
+  chatBox.appendChild(msg);
+  scrollToBottom();
+}
+
+// 打字效果
+function typeText(element, text, speed = 20) {
+  let i = 0;
+
+  function typing() {
+    if (i < text.length) {
+      element.innerText += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+      scrollToBottom();
+    }
+  }
+
+  typing();
+}
+
+// 自动滚动
+function scrollToBottom() {
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
 });

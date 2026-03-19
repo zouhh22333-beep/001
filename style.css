@@ -17,6 +17,7 @@
 
 body {
     font-family: "Ubuntu", sans-serif;
+    letter-spacing: 0.3px;
 }
 
 .header {
@@ -208,4 +209,90 @@ footer {
     }
 }
 
+#chat-container {
+  position: fixed;
+  left: 40px;
+  bottom: 40px;
+  width: 320px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
 
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 15px;
+
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+
+  color: white;
+  font-family: sans-serif;
+  transition: 0.3s;
+}
+
+#chat-container:hover {
+  transform: translateY(-5px);
+}
+
+#chat-box {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 气泡 */
+.message {
+  margin: 6px 0;
+  padding: 10px 14px;
+  border-radius: 14px;
+  max-width: 80%;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* 用户 */
+.user {
+  background: white;
+  color: black;
+  align-self: flex-end;
+}
+
+/* AI */
+.ai {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.25);
+  color: #111;
+  backdrop-filter: blur(10px);
+}
+
+/* 输入区 */
+#input-area {
+  display: flex;
+}
+
+#chat-input {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  outline: none;
+  font-size: 16px;
+}
+
+#send-btn {
+  margin-left: 8px;
+  border: none;
+  background: white;
+  border-radius: 10px;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#send-btn:hover {
+  transform: scale(1.1);
+}
